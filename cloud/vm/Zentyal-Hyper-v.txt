@@ -1,0 +1,23 @@
+Add-WindowsFeature RSAT-Hyper-V-Tools -IncludeAllSubFeature
+
+Update-Help
+
+$vm = "Zentyal"
+$memory = 4
+$storage = 20
+$network = "External"
+$generation = 2
+
+$RAM = $memory * 1GB
+$DISK = $storage * 1GB
+
+New-VM -Name $vm -MemoryStartupBytes $RAM -Path "C:\Users\Public\Documents\Hyper-V\Virtual hard disks" -NewVHDPath "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\Zentyal.vhdx" -NewVHDSize $DISK -SwitchName $network -generation $generation
+
+
+<#
+Solution:
+https://forums.overclockers.com.au/threads/powershell-script-creation-of-vm-and-install-os.1159588/page-2
+
+Tutorial:
+https://youtu.be/HQF5Gr8tlks
+#>
